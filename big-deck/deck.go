@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // create a new type of deck
 
@@ -49,4 +52,12 @@ func deal(d deck, handSize int) (deck, deck) {
 	// ex [1,2,3,4], 2
 	// [1,2], [3,4]
 	return d[:handSize], d[handSize:]
+}
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func saveToFile(d deck) {
+
 }

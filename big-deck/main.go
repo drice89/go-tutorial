@@ -4,9 +4,9 @@ package main
 import "fmt"
 
 func main() {
-	// var card string = "Ace of Spades"
-	cards := []string{
-		newCard(),
+
+	// deck defined in deck.go - does not need to be imported because it is in the same package
+	cards := deck{
 		newCard(),
 		"Ace of Diamonds",
 	}

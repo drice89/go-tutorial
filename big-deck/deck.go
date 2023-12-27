@@ -41,3 +41,12 @@ func (d deck) showDeck() {
 		fmt.Println(i, card)
 	}
 }
+
+func deal(d deck, handSize int) (deck, deck) {
+	// multiple return values
+	// first is from beginning to handSize
+	// second is from handSize to the end
+	// ex [1,2,3,4], 2
+	// [1,2], [3,4]
+	return d[:handSize], d[handSize:]
+}

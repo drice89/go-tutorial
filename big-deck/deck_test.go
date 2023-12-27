@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"testing"
+	"github.com/stretchr/testify/assert"
+)
 
 func TestNewDeck(t *testing.T) {
 	d := newDeck()
@@ -8,5 +11,6 @@ func TestNewDeck(t *testing.T) {
 		t.Errorf("Expected deck length of 20 but got %v", len(d))
 	}
 
-	if 
+	assert.Equal(t, d[0], "Ace of Hearts")
+	assert.Equal(t, d[51], "King of Clubs")
 }

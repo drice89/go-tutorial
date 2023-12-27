@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -58,6 +59,20 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
-func saveToFile(d deck) {
+func (d deck) saveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.toString()), 0666)
+}
 
+func newDeckFromFile(filename string) deck {
+	bs, err := os.ReadFile(filename)
+	if err == nil && bs != nil {
+		s := strings.Split(string(bs), ",")
+		return deck(s)
+	} else {
+		fmt.Println("ERROR:", err)
+		fmt.Println("INFO: Generating new deck due to error loading deck file")
+		return newDeck()
+		// alternatively we could exit
+		//os.Exit(2)
+	}
 }

@@ -2,8 +2,17 @@ package main
 
 import "fmt"
 
+type bot interface {
+	// englishBot and spanishBot both have receiver functions called "getGreeting"
+	// the interface is saying that any type that has getGreeting defined as a
+	// receiver function a member of the "bot" type
+	// now printGreeting below can call getGreeting for any type that his it defined
+	getGreeting() string
+}
+
 type englishBot struct {}
 type spanishBot struct {}
+
 
 func main() {
 	eb := englishBot{}
@@ -11,6 +20,10 @@ func main() {
 
 	printGreeting(eb)
 	printGreeting(sb)
+}
+
+func printGreeting(b bot) {
+	fmt.Println(b.getGreeting())
 }
 
 // can omit value "eb" because its not used. interesting!
@@ -22,10 +35,4 @@ func (sb spanishBot) getGreeting() string {
 	return "Hola Senior"
 }
 
-func printGreeting(eb englishBot) {
-	fmt.Println(eb.getGreeting())
-}
 
-func printGreeting(sb spanishBot) {
-	fmt.Println(sb.getGreeting())
-}

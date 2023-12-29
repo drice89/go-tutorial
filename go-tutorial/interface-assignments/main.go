@@ -18,8 +18,8 @@ type shape interface{
 }
 
 func main() {
-	sq := square{5.5}
-	tri := triangle{5.5, 4.3}
+	sq := square{10}
+	tri := triangle{10, 10}
 
 	printArea(sq)
 	printArea(tri)

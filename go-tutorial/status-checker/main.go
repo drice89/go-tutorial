@@ -28,18 +28,19 @@ func main() {
 		go checkLink(url, c)
 	}
 	
-	fmt.Println(<- c)
-	fmt.Println(<- c)
-	fmt.Println(<- c)
-	fmt.Println(<- c)
-	fmt.Println(<- c)
+	// infinite loop
+	for  {
+		go checkLink(<-c, c)
+	}
 }
 
 func checkLink(url string, c chan string) {
 	_, err := http.Get(url)
 	if err != nil {
-		c <- url + " might be down"
+		fmt.Println(url, "might be down")
+		c <- url
 		return
 	}
-	c <- url + " is up"
+	fmt.Println(url, "is up")
+	c <- url
 }

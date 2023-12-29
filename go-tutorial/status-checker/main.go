@@ -33,10 +33,10 @@ func main() {
 	// wait for the channel to return some value, assign it to l
 	// then run the block
 	for l := range c {
-		go func() {
+		go func(link string) {
 			time.Sleep(5 * time.Second)
-			checkLink(l, c)
-		}()
+			checkLink(link, c)
+		}(l)
 	}
 }
 
